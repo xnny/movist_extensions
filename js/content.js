@@ -26,7 +26,7 @@ function generateHuyaUrl(json_obj) {
         live_info = live_tmp;
     }
     return live_info.sHlsUrl + '/' + live_info.sStreamName + '.' + live_info.sHlsUrlSuffix + '?'
-        + live_info.sHlsAntiCode.replace('&amp;', '&');
+        + live_info.sHlsAntiCode.replace(/&amp;/g, '&');
 }
 
 /**
