@@ -35,13 +35,16 @@ function generateHuyaUrl(json_obj) {
  */
 function crawl() {
     let live_url = '';
-    if (window.location.href.indexOf('huya.com/') > -1) {
+    if (window.location.hostname.indexOf('huya.com') > -1) {
         let body_html = document.body.outerHTML;
         let re = /"stream"\s*:\s*(?<json_s>.*)\};/gm;
         let reg_obj = re.exec(body_html).groups;
         let json_res = reg_obj.json_s;
         let json_obj = window.JSON.parse(json_res);
         live_url = generateHuyaUrl(json_obj);
+    }
+    if (window.location.hostname.indexOf('m.douyu.com') > -1) { // douyu h5
+        live_url = window.document.getElementById('html5player-video').src;
     }
     return live_url;
 }
